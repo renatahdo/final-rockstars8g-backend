@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const Song_controller_1 = require("../Controllers/Song.controller");
+const router = (0, express_1.Router)();
+router.get("/song", Song_controller_1.getSongs);
+router.get("/song/:_id", Song_controller_1.getSongById);
+// router.post("/song", validateToken, createSong);
+// router.put("/song/:_id", validateToken, updateSong);
+// router.delete("/song/:_id", validateToken, deleteSong);
+router.post("/song", Song_controller_1.createSong);
+router.put("/song/:_id", Song_controller_1.updateSong);
+router.delete("/song/:_id", Song_controller_1.deleteSong);
+exports.default = router;
