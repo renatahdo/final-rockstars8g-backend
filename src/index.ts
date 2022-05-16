@@ -10,19 +10,15 @@ import albumRoutes from "./Routes/Album.routes"
 import artistRoutes from "./Routes/Artist.routes"
 dotenv.config();
 
-const DB_NAME = process.env.DB_NAME || "";
-const DB_USERNAME = process.env.DB_USERNAME || "";
-const DB_PASSWORD = process.env.DB_PASSWORD || "";
-const DB_CLUSTER = process.env.DB_CLUSTER || "";
-const SECRET_KEY_HASHED = process.env.SECRET_KEY_HASHED || "";
-
 const main = async () => {
     const app = express()
+    var PORT = process.env.PORT || 10033
     app.use(cors({origin: "*"}))
     app.use(morgan('dev'))
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }));
-    app.set("secretKey", SECRET_KEY_HASHED);
+    //SECRET_KEY="MiClaveSecreta"
+    app.set("secretKey", "16eb7f187e359350bc5bd3fc9742ff0b81abad7dffb927fcb2916cd5d0ee1b8285f60c9ea41332cf890a33e07baab1ed6500e66879c2814a58f9ad0bb9782dee");
     app.use(albumRoutes);
     app.use(artistRoutes);
     app.use(songRoutes);
@@ -31,7 +27,7 @@ const main = async () => {
 
     app.listen(process.env.PORT, async () => {
         await connect(
-            `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_CLUSTER}/${DB_NAME}?retryWrites=true&w=majority`
+            `mongodb+srv://RenataHdo:Renata.2198@rockstars.v0o1d.mongodb.net/music-store?retryWrites=true&w=majority`
         );
         console.log("🌷🌼🌻 -- Server running on port:", process.env.PORT, "-- 🌻🌼🌷");
     });
